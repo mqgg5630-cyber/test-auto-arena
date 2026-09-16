@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-16T08:21:32+00:00",
+  "updated_at": "2026-09-16T08:21:34+00:00",
   "branch": "arena/01a0a948-test-auto-arena",
   "cycle": 2,
   "cycles": [
@@ -68,10 +68,10 @@
       ]
     }
   ],
-  "iteration": 1,
+  "iteration": 2,
   "max_iterations": 4,
   "pass_score": 100,
-  "score": 43,
+  "score": 90,
   "status": "ITERATING",
   "checks": [
     {
@@ -95,24 +95,24 @@
       "name": "docx 段落数量",
       "weight": 6,
       "desc": "非空段落 >= 18",
-      "passed": false,
-      "detail": "实际 15 / 要求 18"
+      "passed": true,
+      "detail": "实际 27 / 要求 18"
     },
     {
       "id": "docx_headings",
       "name": "docx 结构完整",
       "weight": 6,
       "desc": "标题/章节数 >= 5",
-      "passed": false,
-      "detail": "实际 4 / 要求 5"
+      "passed": true,
+      "detail": "实际 7 / 要求 5"
     },
     {
       "id": "docx_length",
       "name": "docx 内容量",
       "weight": 8,
       "desc": "全文字符数 >= 800",
-      "passed": false,
-      "detail": "实际 576 字符 / 要求 800"
+      "passed": true,
+      "detail": "实际 2020 字符 / 要求 800"
     },
     {
       "id": "docx_keywords",
@@ -127,8 +127,8 @@
       "name": "docx 元数据",
       "weight": 6,
       "desc": "标题与作者元数据已填写",
-      "passed": false,
-      "detail": "title='' author='python-docx'"
+      "passed": true,
+      "detail": "title='自动循环流水线运行报告' author='arena-agent'"
     },
     {
       "id": "docx_clean",
@@ -136,7 +136,7 @@
       "weight": 10,
       "desc": "不含禁止残留标记（清单见 PLACEHOLDER_MARKS）",
       "passed": false,
-      "detail": "发现占位文本 TODO"
+      "detail": "发现占位文本 占位"
     },
     {
       "id": "pptx_exists",
@@ -159,8 +159,8 @@
       "name": "pptx 幻灯片数",
       "weight": 10,
       "desc": "幻灯片 >= 6 页",
-      "passed": false,
-      "detail": "实际 3 / 要求 6"
+      "passed": true,
+      "detail": "实际 7 / 要求 6"
     },
     {
       "id": "pptx_title",
@@ -175,16 +175,16 @@
       "name": "pptx 元数据",
       "weight": 4,
       "desc": "标题与作者元数据已填写",
-      "passed": false,
-      "detail": "title='' author=''"
+      "passed": true,
+      "detail": "title='自动循环流水线运行报告' author='arena-agent'"
     },
     {
       "id": "pptx_clean",
       "name": "pptx 无占位符",
       "weight": 7,
       "desc": "不含禁止残留标记（清单见 PLACEHOLDER_MARKS）",
-      "passed": false,
-      "detail": "发现占位文本 TODO"
+      "passed": true,
+      "detail": "无占位文本"
     },
     {
       "id": "status_written",
@@ -192,7 +192,7 @@
       "weight": 5,
       "desc": "status/loop_status.json 存在、可解析且含迭代/得分字段",
       "passed": true,
-      "detail": "iteration=1 score=None"
+      "detail": "iteration=2 score=None"
     }
   ],
   "history": [
@@ -213,7 +213,20 @@
       "status": "ITERATING",
       "push": "ok",
       "commit": "0154b2e",
-      "timestamp": "2026-09-16T08:21:31+00:00"
+      "timestamp": "2026-09-16T08:21:31+00:00",
+      "commit2": "e40fc29"
+    },
+    {
+      "iteration": 2,
+      "level": 2,
+      "score": 90,
+      "failed": [
+        "docx_clean"
+      ],
+      "status": "ITERATING",
+      "push": "pending",
+      "commit": "",
+      "timestamp": "2026-09-16T08:21:34+00:00"
     }
   ],
   "artifacts": {
