@@ -77,10 +77,13 @@ def save_json(path, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def write_status(it, max_iter, pass_score, score, status_str, checks, history):
+def write_status(it, max_iter, pass_score, score, status_str, checks, history,
+                 cycle=1, cycles=None):
     save_json(STATUS_JSON, {
         "updated_at": now(),
         "branch": BRANCH,
+        "cycle": cycle,
+        "cycles": cycles or [],
         "iteration": it,
         "max_iterations": max_iter,
         "pass_score": pass_score,
@@ -153,13 +156,32 @@ def main():
     if history and history[-1].get("status") == "DONE":
         print("流水线已收敛（DONE），无需继续循环。")
         return 0
-    prev_issues = (load_json(ISSUES_JSON) or {}).get("issues", [])
+    # 上一周期未收敛（MAX_REACHED / PUSH_FAILED）→ 自动开启新周期（旧周期归档）
+    cycle = int(prev.get("cycle", 1))
+    cycles = list(prev.get("cycles", []))
+    if history and history[-1].get("status") in ("MAX_REACHED", "PUSH_FAILED") \
+            and cfg.get("auto_restart_on_max", True):
+        cycles.append({
+            "cycle": cycle,
+            "ended": history[-1]["status"],
+            "history": history,
+        })
+        print("上一周期未收敛（%s）→ 自动重启新周期 %d（旧周期已归档）"
+              % (history[-1]["status"], cycle + 1))
+        cycle += 1
+        history = []
+        prev_issues = []
+    else:
+        prev_issues = (load_json(ISSUES_JSON) or {}).get("issues", [])
 
     os.makedirs(os.path.dirname(DOCX), exist_ok=True)
     os.makedirs(os.path.dirname(PPTX), exist_ok=True)
     os.makedirs(STATUS_DIR, exist_ok=True)
 
     start = len(history) + 1
+    if start > max_iter:
+        print("当前周期已完成全部迭代，无待执行迭代。")
+        return 0
     push_fail_streak = 0
     final_status = "UNKNOWN"
 
@@ -173,7 +195,7 @@ def main():
         build_pptx(PPTX, level=level, fixes=fixes, history=history)
 
         # 先落一份「验证中」状态，供 status_written 检查项读取
-        write_status(it, max_iter, pass_score, None, "VALIDATING", None, history)
+        write_status(it, max_iter, pass_score, None, "VALIDATING", None, history, cycle=cycle, cycles=cycles)
         score, checks = validate(ROOT)
         failed = [c["id"] for c in checks if not c["passed"]]
         print("验证得分: %d/100, 失败项: %s" % (score, failed or "无"))
@@ -195,7 +217,7 @@ def main():
             "timestamp": now(),
         }
         history.append(entry)
-        write_status(it, max_iter, pass_score, score, status_str, checks, history)
+        write_status(it, max_iter, pass_score, score, status_str, checks, history, cycle=cycle, cycles=cycles)
         write_issues(it, score, failed, prev_issues)
         write_report(it, max_iter, pass_score, score, status_str, checks, history)
 
@@ -208,7 +230,7 @@ def main():
         push_fail_streak = 0 if ok else push_fail_streak + 1
 
         # 推送结果回写状态文件并补一个小提交，保证分支上的状态与推送结果一致
-        write_status(it, max_iter, pass_score, score, status_str, checks, history)
+        write_status(it, max_iter, pass_score, score, status_str, checks, history, cycle=cycle, cycles=cycles)
         write_report(it, max_iter, pass_score, score, status_str, checks, history)
         sha2 = git_commit("auto-loop: iter %d status-sync · push=%s"
                           % (it, entry["push"]))
@@ -227,7 +249,7 @@ def main():
 
         if push_fail_streak >= 2:
             final_status = "PUSH_FAILED"
-            write_status(it, max_iter, pass_score, score, "PUSH_FAILED", checks, history)
+            write_status(it, max_iter, pass_score, score, "PUSH_FAILED", checks, history, cycle=cycle, cycles=cycles)
             write_report(it, max_iter, pass_score, score, "PUSH_FAILED", checks, history)
             git_commit("auto-loop: iter %d · PUSH_FAILED · 连续推送失败，暂停循环" % it)
             print("连续推送失败，循环暂停，请检查 GitHub 连接。")

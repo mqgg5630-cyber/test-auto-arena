@@ -35,7 +35,7 @@ SECTIONS = [
         "heading": "流程说明",
         "body": [
             "步骤 1 · 生成：skills/docx_skill.py 与 skills/pptx_skill.py 依据 pipeline/content_spec.py 的内容模型，产出 Word 报告与 PPT 演示文稿。",
-            "步骤 2 · 验证：skills/validator.py 执行 15 项检查（存在性、可打开性、段落/幻灯片数量、关键内容、元数据、占位符、状态文件），输出 0-100 分与失败项清单。",
+            "步骤 2 · 验证：skills/validator.py 执行 15 项检查（存在性、可打开性、段落/幻灯片数量、关键内容、元数据、残留文本、状态文件），输出 0-100 分与失败项清单。",
             "步骤 3 · 推送：pipeline/loop.py 将 status/loop_status.json、status/REPORT.md 与本轮产物 git add、commit 并 push 到当前分支。",
             "步骤 4 · 决策：得分达到阈值则标记 DONE 并结束；否则把失败项写入 status/issues.json，下一轮生成时针对性修复，直至收敛或达到最大迭代次数。",
             "自修复的关键：验证失败项直接成为下一轮生成的输入（fixes 集合），循环因此具备定向改进能力，而非简单重试。",
