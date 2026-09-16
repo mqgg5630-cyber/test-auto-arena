@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-16T08:20:15+00:00",
+  "updated_at": "2026-09-16T08:20:16+00:00",
   "branch": "arena/01a0a948-test-auto-arena",
-  "iteration": 3,
+  "iteration": 4,
   "max_iterations": 4,
   "pass_score": 100,
   "score": 90,
-  "status": "ITERATING",
+  "status": "MAX_REACHED",
   "checks": [
     {
       "id": "docx_exists",
@@ -45,7 +45,7 @@
       "weight": 8,
       "desc": "全文字符数 >= 800",
       "passed": true,
-      "detail": "实际 2041 字符 / 要求 800"
+      "detail": "实际 2065 字符 / 要求 800"
     },
     {
       "id": "docx_keywords",
@@ -125,7 +125,7 @@
       "weight": 5,
       "desc": "status/loop_status.json 存在、可解析且含迭代/得分字段",
       "passed": true,
-      "detail": "iteration=3 score=None"
+      "detail": "iteration=4 score=None"
     }
   ],
   "history": [
@@ -172,7 +172,20 @@
       "status": "ITERATING",
       "push": "ok",
       "commit": "713c1e9",
-      "timestamp": "2026-09-16T08:20:13+00:00"
+      "timestamp": "2026-09-16T08:20:13+00:00",
+      "commit2": "f4c1980"
+    },
+    {
+      "iteration": 4,
+      "level": 3,
+      "score": 90,
+      "failed": [
+        "docx_clean"
+      ],
+      "status": "MAX_REACHED",
+      "push": "pending",
+      "commit": "",
+      "timestamp": "2026-09-16T08:20:16+00:00"
     }
   ],
   "artifacts": {
