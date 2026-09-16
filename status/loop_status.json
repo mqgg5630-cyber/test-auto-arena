@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-16T08:20:11+00:00",
+  "updated_at": "2026-09-16T08:20:12+00:00",
   "branch": "arena/01a0a948-test-auto-arena",
   "iteration": 2,
   "max_iterations": 4,
@@ -157,8 +157,8 @@
         "docx_clean"
       ],
       "status": "ITERATING",
-      "push": "pending",
-      "commit": "",
+      "push": "ok",
+      "commit": "01c24e7",
       "timestamp": "2026-09-16T08:20:11+00:00"
     }
   ],
