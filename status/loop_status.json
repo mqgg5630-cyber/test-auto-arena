@@ -1,0 +1,81 @@
+{
+  "iterations": [
+    {
+      "iteration": 1,
+      "timestamp": "2026-09-16T08:06:05.969742",
+      "eval": {
+        "iteration": 1,
+        "overall_score": 94,
+        "docx": {
+          "score": 88,
+          "issues": [],
+          "details": {
+            "paragraphs": 68,
+            "tables": 1,
+            "headings": 15,
+            "file_size": 40266
+          },
+          "breakdown": {
+            "structure": 30,
+            "content": 23,
+            "professional": 15,
+            "layout": 20
+          }
+        },
+        "pptx": {
+          "score": 100,
+          "issues": [],
+          "details": {
+            "slides": 10,
+            "has_title": true,
+            "has_table": true,
+            "file_size": 38772
+          },
+          "breakdown": {
+            "structure": 30,
+            "content": 30,
+            "professional": 20,
+            "layout": 20
+          }
+        },
+        "feedback": "质量优秀 (得分 94)，已达到阈值 85，可以认为结果没问题。",
+        "suggestions": [],
+        "status": "pass",
+        "threshold": 85,
+        "is_pass": true,
+        "summary": "迭代 v1: 综合得分 94, Docx 88, Pptx 100"
+      },
+      "files": [
+        "output/report_final.docx",
+        "output/presentation_final.pptx",
+        "output/report_v1.docx",
+        "output/presentation_v1.pptx"
+      ],
+      "branch": "arena/01a0a93d-test-auto-arena",
+      "local_receipts": [
+        "local/status_receipts/receipt_v1_inbox.json",
+        "local/status_receipts/receipt_v1_processed.json"
+      ]
+    }
+  ],
+  "current": {
+    "iteration": 1,
+    "overall_score": 94,
+    "is_pass": true,
+    "status": "pass",
+    "timestamp": "2026-09-16T08:06:05.969747",
+    "branch": "arena/01a0a93d-test-auto-arena",
+    "files": [
+      "output/report_final.docx",
+      "output/presentation_final.pptx",
+      "output/report_v1.docx",
+      "output/presentation_v1.pptx"
+    ]
+  },
+  "meta": {
+    "source_agent": "https://arena.ai/agent/01a0a821-3f3c-7bbe-bf99-6e6793c45d81",
+    "branch": "arena/01a0a93d-test-auto-arena",
+    "total_iterations": 1,
+    "last_update": "2026-09-16T08:06:05.969749"
+  }
+}
