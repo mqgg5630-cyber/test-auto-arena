@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-09-16T08:21:41+00:00",
+  "updated_at": "2026-09-16T08:21:58+00:00",
   "branch": "arena/01a0a948-test-auto-arena",
-  "cycle": 2,
+  "cycle": 3,
   "cycles": [
     {
       "cycle": 1,
@@ -66,13 +66,77 @@
           "timestamp": "2026-09-16T08:20:16+00:00"
         }
       ]
+    },
+    {
+      "cycle": 2,
+      "ended": "MAX_REACHED",
+      "history": [
+        {
+          "iteration": 1,
+          "level": 1,
+          "score": 43,
+          "failed": [
+            "docx_paragraphs",
+            "docx_headings",
+            "docx_length",
+            "docx_metadata",
+            "docx_clean",
+            "pptx_slides",
+            "pptx_metadata",
+            "pptx_clean"
+          ],
+          "status": "ITERATING",
+          "push": "ok",
+          "commit": "0154b2e",
+          "timestamp": "2026-09-16T08:21:31+00:00",
+          "commit2": "e40fc29"
+        },
+        {
+          "iteration": 2,
+          "level": 2,
+          "score": 90,
+          "failed": [
+            "docx_clean"
+          ],
+          "status": "ITERATING",
+          "push": "ok",
+          "commit": "649f0d5",
+          "timestamp": "2026-09-16T08:21:34+00:00",
+          "commit2": "390fa2e"
+        },
+        {
+          "iteration": 3,
+          "level": 3,
+          "score": 90,
+          "failed": [
+            "docx_clean"
+          ],
+          "status": "ITERATING",
+          "push": "ok",
+          "commit": "851687b",
+          "timestamp": "2026-09-16T08:21:37+00:00",
+          "commit2": "6216833"
+        },
+        {
+          "iteration": 4,
+          "level": 3,
+          "score": 90,
+          "failed": [
+            "docx_clean"
+          ],
+          "status": "MAX_REACHED",
+          "push": "ok",
+          "commit": "b221f7d",
+          "timestamp": "2026-09-16T08:21:39+00:00"
+        }
+      ]
     }
   ],
-  "iteration": 4,
+  "iteration": 1,
   "max_iterations": 4,
   "pass_score": 100,
-  "score": 90,
-  "status": "MAX_REACHED",
+  "score": 43,
+  "status": "ITERATING",
   "checks": [
     {
       "id": "docx_exists",
@@ -95,24 +159,24 @@
       "name": "docx 段落数量",
       "weight": 6,
       "desc": "非空段落 >= 18",
-      "passed": true,
-      "detail": "实际 27 / 要求 18"
+      "passed": false,
+      "detail": "实际 15 / 要求 18"
     },
     {
       "id": "docx_headings",
       "name": "docx 结构完整",
       "weight": 6,
       "desc": "标题/章节数 >= 5",
-      "passed": true,
-      "detail": "实际 7 / 要求 5"
+      "passed": false,
+      "detail": "实际 4 / 要求 5"
     },
     {
       "id": "docx_length",
       "name": "docx 内容量",
       "weight": 8,
       "desc": "全文字符数 >= 800",
-      "passed": true,
-      "detail": "实际 2068 字符 / 要求 800"
+      "passed": false,
+      "detail": "实际 576 字符 / 要求 800"
     },
     {
       "id": "docx_keywords",
@@ -127,16 +191,16 @@
       "name": "docx 元数据",
       "weight": 6,
       "desc": "标题与作者元数据已填写",
-      "passed": true,
-      "detail": "title='自动循环流水线运行报告' author='arena-agent'"
+      "passed": false,
+      "detail": "title='' author='python-docx'"
     },
     {
       "id": "docx_clean",
-      "name": "docx 无占位符",
+      "name": "docx 无残留标记",
       "weight": 10,
       "desc": "不含禁止残留标记（清单见 PLACEHOLDER_MARKS）",
       "passed": false,
-      "detail": "发现占位文本 占位"
+      "detail": "发现占位文本 TODO"
     },
     {
       "id": "pptx_exists",
@@ -159,8 +223,8 @@
       "name": "pptx 幻灯片数",
       "weight": 10,
       "desc": "幻灯片 >= 6 页",
-      "passed": true,
-      "detail": "实际 7 / 要求 6"
+      "passed": false,
+      "detail": "实际 3 / 要求 6"
     },
     {
       "id": "pptx_title",
@@ -175,16 +239,16 @@
       "name": "pptx 元数据",
       "weight": 4,
       "desc": "标题与作者元数据已填写",
-      "passed": true,
-      "detail": "title='自动循环流水线运行报告' author='arena-agent'"
+      "passed": false,
+      "detail": "title='' author=''"
     },
     {
       "id": "pptx_clean",
-      "name": "pptx 无占位符",
+      "name": "pptx 无残留标记",
       "weight": 7,
       "desc": "不含禁止残留标记（清单见 PLACEHOLDER_MARKS）",
-      "passed": true,
-      "detail": "无占位文本"
+      "passed": false,
+      "detail": "发现占位文本 TODO"
     },
     {
       "id": "status_written",
@@ -192,7 +256,7 @@
       "weight": 5,
       "desc": "status/loop_status.json 存在、可解析且含迭代/得分字段",
       "passed": true,
-      "detail": "iteration=4 score=None"
+      "detail": "iteration=1 score=None"
     }
   ],
   "history": [
@@ -211,48 +275,9 @@
         "pptx_clean"
       ],
       "status": "ITERATING",
-      "push": "ok",
-      "commit": "0154b2e",
-      "timestamp": "2026-09-16T08:21:31+00:00",
-      "commit2": "e40fc29"
-    },
-    {
-      "iteration": 2,
-      "level": 2,
-      "score": 90,
-      "failed": [
-        "docx_clean"
-      ],
-      "status": "ITERATING",
-      "push": "ok",
-      "commit": "649f0d5",
-      "timestamp": "2026-09-16T08:21:34+00:00",
-      "commit2": "390fa2e"
-    },
-    {
-      "iteration": 3,
-      "level": 3,
-      "score": 90,
-      "failed": [
-        "docx_clean"
-      ],
-      "status": "ITERATING",
-      "push": "ok",
-      "commit": "851687b",
-      "timestamp": "2026-09-16T08:21:37+00:00",
-      "commit2": "6216833"
-    },
-    {
-      "iteration": 4,
-      "level": 3,
-      "score": 90,
-      "failed": [
-        "docx_clean"
-      ],
-      "status": "MAX_REACHED",
-      "push": "ok",
-      "commit": "b221f7d",
-      "timestamp": "2026-09-16T08:21:39+00:00"
+      "push": "pending",
+      "commit": "",
+      "timestamp": "2026-09-16T08:21:58+00:00"
     }
   ],
   "artifacts": {
