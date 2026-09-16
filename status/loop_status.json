@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-16T08:22:00+00:00",
+  "updated_at": "2026-09-16T08:22:02+00:00",
   "branch": "arena/01a0a948-test-auto-arena",
   "cycle": 3,
   "cycles": [
@@ -286,8 +286,8 @@
       "score": 100,
       "failed": [],
       "status": "DONE",
-      "push": "pending",
-      "commit": "",
+      "push": "ok",
+      "commit": "6b373df",
       "timestamp": "2026-09-16T08:22:00+00:00"
     }
   ],
