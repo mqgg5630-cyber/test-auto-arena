@@ -1,8 +1,9 @@
 {
-  "updated_at": "2026-09-16T08:21:58+00:00",
-  "iteration": 1,
-  "score": 43,
-  "issues": [
+  "updated_at": "2026-09-16T08:22:00+00:00",
+  "iteration": 2,
+  "score": 100,
+  "issues": [],
+  "resolved": [
     "docx_paragraphs",
     "docx_headings",
     "docx_length",
@@ -11,6 +12,5 @@
     "pptx_slides",
     "pptx_metadata",
     "pptx_clean"
-  ],
-  "resolved": []
+  ]
 }
